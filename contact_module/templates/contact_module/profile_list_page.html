@@ -1,0 +1,21 @@
+{% extends 'shared/_layout.html' %}
+
+{% block title %}
+    لیست پروفایل ها
+{% endblock %}
+
+{% block content %}
+{#    <div class="countainer">#}
+{#        <div class="row">#}
+{#            <div class="col-md-12">#}
+{#                <div class="ul">#}
+{#                    <div class="li">#}
+                        {% for field in profiles %}
+                            <img src="{{ field.image.url }}" alt="" width="500">
+                        {% endfor %}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{% endblock %}

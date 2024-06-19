@@ -1,0 +1,85 @@
+{% extends 'shared/_layout.html' %}
+{% block title %}
+    تماس با ما
+{% endblock %}
+{% block content %}
+    <div id="contact-page" class="container">
+
+    <div class="bg">
+    		<div class="row">
+	    		<div class="col-sm-8">
+	    			<div class="contact-form">
+	    				<h2 class="title text-center">با ما در ارتباط باشیـد</h2>
+	    				<div class="status alert alert-success" style="display: none"></div>
+				    	<form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+                            {% csrf_token %}
+{#                                {% for fields in form %}#}
+{#                                    {{ fields.label_tag }}#}
+{#                                    {{ fields }}#}
+{#                                    {{ fields.errors }}#}
+{#                                {% endfor %}#}
+
+                            <div class="col-md-6 form-group">
+                                {{ form.email.label_tag }}
+                                {{ form.email }}
+                                {{ form.email.errors }}
+
+                            </div>
+                            <div class="col-md-6 form-group">
+                                {{ form.full_name.label_tag }}
+                                {{ form.full_name }}
+                                {{ form.full_name.errors }}
+
+                            </div>
+                            <div class="col-md-12 form-group">
+                                {{ form.title.label_tag }}
+                                {{ form.title }}
+                                {{ form.title.errors }}
+
+                            </div>
+                            <div class="col-md-6 form-group pull-right">
+                                {{ form.massage.label_tag }}
+                                {{ form.massage }}
+                                {{ form.massage.errors }}
+                            </div>
+
+                          {% comment %}  {{ contact_form }}{% endcomment %}
+{#				            <div class="form-group col-md-6">#}
+{#				                <input type="text" name="full_name" class="form-control" placeholder="نام">#}
+{#				            </div>#}
+{#				            <div class="form-group col-md-6">#}
+{#				                <input type="email" name="email" class="form-control" placeholder="ایمیـل">#}
+{#				            </div>#}
+{#				            <div class="form-group col-md-12">#}
+{#				                <input type="text" name="title" class="form-control" placeholder="موضـوع">#}
+{#				            </div>#}
+{#				            <div class="form-group col-md-12">#}
+{#				                <textarea name="massage" id="message" class="form-control" rows="8" placeholder="پیغـام شمـا"></textarea>#}
+{#				            </div>#}
+				            <div class="form-group col-md-12">
+				                <input type="submit"  class="btn btn-primary pull-right" value="ارسـال">
+				            </div>
+				        </form>
+	    			</div>
+	    		</div>
+	    		<div class="col-sm-4">
+	    			<div class="contact-info">
+	    				<h2 class="title text-center">اطلاعات تماس</h2>
+	    				<address>
+	    					<p>{{ setting.site_name }}</p>
+	    					<p>آدرس :{{ setting.address }}</p>
+                            {% if setting.phone %}
+                                <p>تلفن تماس :{{ setting.phone }}</p>
+                            {% endif %}
+                            {% if setting.fax %}
+                                <p>فکس :{{ setting.fax }}</p>
+                            {% endif %}
+                            {% if setting.email %}
+                                <p>ایمیل :{{ setting.email }}</p>
+                            {% endif %}
+	    				</address>
+	    			</div>
+    			</div>
+	    	</div>
+    	</div></div>
+{% endblock %}

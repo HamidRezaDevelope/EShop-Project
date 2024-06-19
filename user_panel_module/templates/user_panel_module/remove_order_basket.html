@@ -1,0 +1,72 @@
+{% load poll_extras %}
+
+{% block content %}
+
+        <section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">خانـه</a></li>
+				  <li class="active">پرداخت</li>
+				</ol>
+			</div><!--/breadcrums-->
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">کـالا</td>
+							<td class="description"></td>
+							<td class="price">قیمت</td>
+							<td class="quantity">تعـداد</td>
+							<td class="total">مجمـوع</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+						{% for order_detail in order.orderdetails_set.all %}
+						    <tr>
+							<td class="cart_product">
+								<a href=""><img src="{{ order_detail.product.image.url}}" width="75" alt=""></a>
+							</td>
+							<td class="cart_description">
+								<h4><a href="" class="one-line-text">{{ order_detail.product.title }}</a></h4>
+								<p>شناسـه : {{ order_detail.product.id }}</p>
+							</td>
+							<td class="cart_price">
+								<p>{{ order_detail.product.price |three_digits_currency }}</p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									<a class="cart_quantity_up" href=""> + </a>
+									<input class="cart_quantity_input" type="text" name="quantity" value="{{ order_detail.count }}" autocomplete="off" size="2">
+									<a class="cart_quantity_down" href=""> - </a>
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">{% multiply order_detail.count order_detail.product.price %}</p>
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+							</td>
+						</tr>
+						{% endfor %}
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+        <div class="heading">
+				<h3>نهایی کردن سفارش یا ادامه خریـد ؟! </h3>
+				<p>در صورتیکـه کوپن خریـد و یا کد تخفیف داریـد میتوانید از آن استفاده نمایید | با استفاده از بخش مربوطه هزینه حمل و نقل خود را محاسبـه نمایید</p>
+			</div>
+        <div class="total_area">
+						<ul>
+							<li>مجمـوع سبـد خریـد <span>{{ sum | three_digits_currency  }}</span></li>
+							<li>مجمـوع <span>2.212.700 ريال</span></li>
+						</ul>
+							<a class="btn btn-default update" href="shop.html">به روز رسانی سبـد خریـد </a>
+							<a class="btn btn-default check_out" href="checkout.html">پرداخت</a>
+					</div>
+
+{% endblock %}
